@@ -45,7 +45,7 @@
       import { make_game, default as init } from './pkg/wasm_tetris.js'
       async function run() {
         await init('./pkg/wasm_tetris_bg.wasm')
-        document.getElementById('p-canvas').appendChild(make_game(15, 12, 25))
+        document.getElementById('p-canvas').appendChild(make_game(15, 15))
       }
       run()
     </script>
