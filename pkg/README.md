@@ -2,8 +2,6 @@
 
 Snake in WebAssembly.
 
-![Snapshot](/snapshot.png)
-
 ## Development setup
 
 Install [Rust](https://www.rust-lang.org/learn/get-started) and [Wasm-Pack](https://rustwasm.github.io/wasm-pack/installer/).
