@@ -130,6 +130,53 @@ function __widl_f_set_attribute_Element(arg0, arg1, arg2, arg3, arg4, exnptr) {
 
 __exports.__widl_f_set_attribute_Element = __widl_f_set_attribute_Element;
 
+let WASM_VECTOR_LEN = 0;
+
+let cachedTextEncoder = new TextEncoder('utf-8');
+
+let passStringToWasm;
+if (typeof cachedTextEncoder.encodeInto === 'function') {
+    passStringToWasm = function(arg) {
+
+        let size = arg.length;
+        let ptr = wasm.__wbindgen_malloc(size);
+        let writeOffset = 0;
+        while (true) {
+            const view = getUint8Memory().subarray(ptr + writeOffset, ptr + size);
+            const { read, written } = cachedTextEncoder.encodeInto(arg, view);
+            writeOffset += written;
+            if (read === arg.length) {
+                break;
+            }
+            arg = arg.substring(read);
+            ptr = wasm.__wbindgen_realloc(ptr, size, size += arg.length * 3);
+        }
+        WASM_VECTOR_LEN = writeOffset;
+        return ptr;
+    };
+} else {
+    passStringToWasm = function(arg) {
+
+        const buf = cachedTextEncoder.encode(arg);
+        const ptr = wasm.__wbindgen_malloc(buf.length);
+        getUint8Memory().set(buf, ptr);
+        WASM_VECTOR_LEN = buf.length;
+        return ptr;
+    };
+}
+
+function __widl_f_type_Event(ret, arg0) {
+
+    const retptr = passStringToWasm(getObject(arg0).type);
+    const retlen = WASM_VECTOR_LEN;
+    const mem = getUint32Memory();
+    mem[ret / 4] = retptr;
+    mem[ret / 4 + 1] = retlen;
+
+}
+
+__exports.__widl_f_type_Event = __widl_f_type_Event;
+
 function __widl_f_add_event_listener_with_event_listener_EventTarget(arg0, arg1, arg2, arg3, exnptr) {
     let varg1 = getStringFromWasm(arg1, arg2);
     try {
@@ -175,41 +222,6 @@ function __widl_f_set_height_HTMLCanvasElement(arg0, arg1) {
 
 __exports.__widl_f_set_height_HTMLCanvasElement = __widl_f_set_height_HTMLCanvasElement;
 
-let WASM_VECTOR_LEN = 0;
-
-let cachedTextEncoder = new TextEncoder('utf-8');
-
-let passStringToWasm;
-if (typeof cachedTextEncoder.encodeInto === 'function') {
-    passStringToWasm = function(arg) {
-
-        let size = arg.length;
-        let ptr = wasm.__wbindgen_malloc(size);
-        let writeOffset = 0;
-        while (true) {
-            const view = getUint8Memory().subarray(ptr + writeOffset, ptr + size);
-            const { read, written } = cachedTextEncoder.encodeInto(arg, view);
-            writeOffset += written;
-            if (read === arg.length) {
-                break;
-            }
-            arg = arg.substring(read);
-            ptr = wasm.__wbindgen_realloc(ptr, size, size += arg.length * 3);
-        }
-        WASM_VECTOR_LEN = writeOffset;
-        return ptr;
-    };
-} else {
-    passStringToWasm = function(arg) {
-
-        const buf = cachedTextEncoder.encode(arg);
-        const ptr = wasm.__wbindgen_malloc(buf.length);
-        getUint8Memory().set(buf, ptr);
-        WASM_VECTOR_LEN = buf.length;
-        return ptr;
-    };
-}
-
 function __widl_f_key_KeyboardEvent(ret, arg0) {
 
     const retptr = passStringToWasm(getObject(arg0).key);
@@ -225,6 +237,16 @@ __exports.__widl_f_key_KeyboardEvent = __widl_f_key_KeyboardEvent;
 function __widl_instanceof_Window(idx) { return getObject(idx) instanceof Window ? 1 : 0; }
 
 __exports.__widl_instanceof_Window = __widl_instanceof_Window;
+
+function __widl_f_cancel_animation_frame_Window(arg0, arg1, exnptr) {
+    try {
+        getObject(arg0).cancelAnimationFrame(arg1);
+    } catch (e) {
+        handleError(exnptr, e);
+    }
+}
+
+__exports.__widl_f_cancel_animation_frame_Window = __widl_f_cancel_animation_frame_Window;
 
 function __widl_f_request_animation_frame_Window(arg0, arg1, exnptr) {
     try {
@@ -377,9 +399,9 @@ function __wbindgen_throw(ptr, len) {
 
 __exports.__wbindgen_throw = __wbindgen_throw;
 
-function __wbindgen_closure_wrapper45(a, b, _ignored) {
-    const f = wasm.__wbg_function_table.get(15);
-    const d = wasm.__wbg_function_table.get(16);
+function __wbindgen_closure_wrapper50(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(18);
+    const d = wasm.__wbg_function_table.get(19);
     const cb = function(arg0) {
         this.cnt++;
         let a = this.a;
@@ -401,11 +423,11 @@ function __wbindgen_closure_wrapper45(a, b, _ignored) {
     return addHeapObject(real);
 }
 
-__exports.__wbindgen_closure_wrapper45 = __wbindgen_closure_wrapper45;
+__exports.__wbindgen_closure_wrapper50 = __wbindgen_closure_wrapper50;
 
-function __wbindgen_closure_wrapper47(a, b, _ignored) {
-    const f = wasm.__wbg_function_table.get(19);
-    const d = wasm.__wbg_function_table.get(16);
+function __wbindgen_closure_wrapper52(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(22);
+    const d = wasm.__wbg_function_table.get(19);
     const cb = function(arg0) {
         this.cnt++;
         let a = this.a;
@@ -427,7 +449,33 @@ function __wbindgen_closure_wrapper47(a, b, _ignored) {
     return addHeapObject(real);
 }
 
-__exports.__wbindgen_closure_wrapper47 = __wbindgen_closure_wrapper47;
+__exports.__wbindgen_closure_wrapper52 = __wbindgen_closure_wrapper52;
+
+function __wbindgen_closure_wrapper54(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(18);
+    const d = wasm.__wbg_function_table.get(19);
+    const cb = function(arg0) {
+        this.cnt++;
+        let a = this.a;
+        this.a = 0;
+        try {
+            return f(a, b, addHeapObject(arg0));
+
+        } finally {
+            if (--this.cnt === 0) d(a, b);
+            else this.a = a;
+
+        }
+
+    };
+    cb.a = a;
+    cb.cnt = 1;
+    let real = cb.bind(cb);
+    real.original = cb;
+    return addHeapObject(real);
+}
+
+__exports.__wbindgen_closure_wrapper54 = __wbindgen_closure_wrapper54;
 
 function __wbindgen_object_clone_ref(idx) {
     return addHeapObject(getObject(idx));
