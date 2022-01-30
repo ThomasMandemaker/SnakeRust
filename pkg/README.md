@@ -1,6 +1,6 @@
 # Wasm Tetris
 
-Tetris game in WebAssembly.
+Snake in WebAssembly.
 
 ![Snapshot](/snapshot.png)
 
@@ -18,7 +18,7 @@ Run a local server at `/examples` then open `/examples/index.html` in a modern b
 
 ## References
 
-- https://en.wikipedia.org/wiki/Tetris
+- https://en.wikipedia.org/wiki/Snake_(video_game_genre)   
 - https://github.com/rustwasm/wasm-bindgen
 - https://developer.mozilla.org/en-US/docs/WebAssembly
 

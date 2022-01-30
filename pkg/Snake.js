@@ -77,12 +77,13 @@ function __widl_f_fill_rect_CanvasRenderingContext2D(arg0, arg1, arg2, arg3, arg
 
 __exports.__widl_f_fill_rect_CanvasRenderingContext2D = __widl_f_fill_rect_CanvasRenderingContext2D;
 
-function __widl_f_set_text_align_CanvasRenderingContext2D(arg0, arg1, arg2) {
-    let varg1 = getStringFromWasm(arg1, arg2);
-    getObject(arg0).textAlign = varg1;
+let cachegetUint32Memory = null;
+function getUint32Memory() {
+    if (cachegetUint32Memory === null || cachegetUint32Memory.buffer !== wasm.memory.buffer) {
+        cachegetUint32Memory = new Uint32Array(wasm.memory.buffer);
+    }
+    return cachegetUint32Memory;
 }
-
-__exports.__widl_f_set_text_align_CanvasRenderingContext2D = __widl_f_set_text_align_CanvasRenderingContext2D;
 
 function addHeapObject(obj) {
     if (heap_next === heap.length) heap.push(heap.length + 1);
@@ -93,19 +94,36 @@ function addHeapObject(obj) {
     return idx;
 }
 
-let cachegetUint32Memory = null;
-function getUint32Memory() {
-    if (cachegetUint32Memory === null || cachegetUint32Memory.buffer !== wasm.memory.buffer) {
-        cachegetUint32Memory = new Uint32Array(wasm.memory.buffer);
-    }
-    return cachegetUint32Memory;
-}
-
 function handleError(exnptr, e) {
     const view = getUint32Memory();
     view[exnptr / 4] = 1;
     view[exnptr / 4 + 1] = addHeapObject(e);
 }
+
+function __widl_f_fill_text_CanvasRenderingContext2D(arg0, arg1, arg2, arg3, arg4, exnptr) {
+    let varg1 = getStringFromWasm(arg1, arg2);
+    try {
+        getObject(arg0).fillText(varg1, arg3, arg4);
+    } catch (e) {
+        handleError(exnptr, e);
+    }
+}
+
+__exports.__widl_f_fill_text_CanvasRenderingContext2D = __widl_f_fill_text_CanvasRenderingContext2D;
+
+function __widl_f_set_font_CanvasRenderingContext2D(arg0, arg1, arg2) {
+    let varg1 = getStringFromWasm(arg1, arg2);
+    getObject(arg0).font = varg1;
+}
+
+__exports.__widl_f_set_font_CanvasRenderingContext2D = __widl_f_set_font_CanvasRenderingContext2D;
+
+function __widl_f_set_text_align_CanvasRenderingContext2D(arg0, arg1, arg2) {
+    let varg1 = getStringFromWasm(arg1, arg2);
+    getObject(arg0).textAlign = varg1;
+}
+
+__exports.__widl_f_set_text_align_CanvasRenderingContext2D = __widl_f_set_text_align_CanvasRenderingContext2D;
 
 function __widl_f_create_element_Document(arg0, arg1, arg2, exnptr) {
     let varg1 = getStringFromWasm(arg1, arg2);
@@ -399,9 +417,9 @@ function __wbindgen_throw(ptr, len) {
 
 __exports.__wbindgen_throw = __wbindgen_throw;
 
-function __wbindgen_closure_wrapper50(a, b, _ignored) {
-    const f = wasm.__wbg_function_table.get(18);
-    const d = wasm.__wbg_function_table.get(19);
+function __wbindgen_closure_wrapper52(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(20);
+    const d = wasm.__wbg_function_table.get(21);
     const cb = function(arg0) {
         this.cnt++;
         let a = this.a;
@@ -423,11 +441,11 @@ function __wbindgen_closure_wrapper50(a, b, _ignored) {
     return addHeapObject(real);
 }
 
-__exports.__wbindgen_closure_wrapper50 = __wbindgen_closure_wrapper50;
+__exports.__wbindgen_closure_wrapper52 = __wbindgen_closure_wrapper52;
 
-function __wbindgen_closure_wrapper52(a, b, _ignored) {
-    const f = wasm.__wbg_function_table.get(22);
-    const d = wasm.__wbg_function_table.get(19);
+function __wbindgen_closure_wrapper54(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(24);
+    const d = wasm.__wbg_function_table.get(21);
     const cb = function(arg0) {
         this.cnt++;
         let a = this.a;
@@ -449,11 +467,11 @@ function __wbindgen_closure_wrapper52(a, b, _ignored) {
     return addHeapObject(real);
 }
 
-__exports.__wbindgen_closure_wrapper52 = __wbindgen_closure_wrapper52;
+__exports.__wbindgen_closure_wrapper54 = __wbindgen_closure_wrapper54;
 
-function __wbindgen_closure_wrapper54(a, b, _ignored) {
-    const f = wasm.__wbg_function_table.get(18);
-    const d = wasm.__wbg_function_table.get(19);
+function __wbindgen_closure_wrapper56(a, b, _ignored) {
+    const f = wasm.__wbg_function_table.get(20);
+    const d = wasm.__wbg_function_table.get(21);
     const cb = function(arg0) {
         this.cnt++;
         let a = this.a;
@@ -475,7 +493,7 @@ function __wbindgen_closure_wrapper54(a, b, _ignored) {
     return addHeapObject(real);
 }
 
-__exports.__wbindgen_closure_wrapper54 = __wbindgen_closure_wrapper54;
+__exports.__wbindgen_closure_wrapper56 = __wbindgen_closure_wrapper56;
 
 function __wbindgen_object_clone_ref(idx) {
     return addHeapObject(getObject(idx));
