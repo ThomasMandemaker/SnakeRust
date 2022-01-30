@@ -1,21 +1,21 @@
 {
-  "name": "wasm_tetris",
+  "name": "Snake",
   "collaborators": [
-    "axu <axu701@gmail.com>"
+    "ThomasMandemaker"
   ],
-  "description": "Tetris game WebAssembly demo",
+  "description": "snake game",
   "version": "3.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xuu/wasm-tetris"
+    "url": "https://github.com/ThomasMandemaker/snake"
   },
   "files": [
-    "wasm_tetris_bg.wasm",
-    "wasm_tetris.js",
-    "wasm_tetris.d.ts"
+    "Snake_bg.wasm",
+    "Snake.js",
+    "Snake.d.ts"
   ],
-  "module": "wasm_tetris.js",
-  "types": "wasm_tetris.d.ts",
+  "module": "Snake.js",
+  "types": "Snake.d.ts",
   "sideEffects": false
 }
