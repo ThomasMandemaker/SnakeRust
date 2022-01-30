@@ -1,11 +1,10 @@
 /* tslint:disable */
 /**
-* @param {number} rows 
-* @param {number} cols 
-* @param {number} block_width 
+* @param {number} width 
+* @param {number} height 
 * @returns {any} 
 */
-export function make_tetris(rows: number, cols: number, block_width: number): any;
+export function make_game(width: number, height: number): any;
 
 /**
 * If `module_or_path` is {RequestInfo}, makes a request and
