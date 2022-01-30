@@ -1,10 +1,10 @@
 /* tslint:disable */
 /**
-* @param {number} width 
-* @param {number} height 
+* @param {number} cols 
+* @param {number} rows 
 * @returns {any} 
 */
-export function make_game(width: number, height: number): any;
+export function make_game(cols: number, rows: number): any;
 
 /**
 * If `module_or_path` is {RequestInfo}, makes a request and

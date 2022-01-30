@@ -24,12 +24,12 @@ function takeObject(idx) {
     return ret;
 }
 /**
-* @param {number} width
-* @param {number} height
+* @param {number} cols
+* @param {number} rows
 * @returns {any}
 */
-export function make_game(width, height) {
-    return takeObject(wasm.make_game(width, height));
+export function make_game(cols, rows) {
+    return takeObject(wasm.make_game(cols, rows));
 }
 
 __exports.make_game = make_game;
